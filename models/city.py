@@ -1,9 +1,9 @@
-from settings import db
+from db import db
 
 from sqlalchemy_serializer import SerializerMixin
 
 
-class CityModel(db.Model, SerializerMixin):
+class City(db.Model, SerializerMixin):
     __tablename__ = 'city'
 
     id = db.Column(db.Integer, primary_key=True)

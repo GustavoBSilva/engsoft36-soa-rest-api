@@ -1,9 +1,9 @@
-from settings import db
+from db import db
 
 from sqlalchemy_serializer import SerializerMixin
 
 
-class CountryModel(db.Model, SerializerMixin):
+class Country(db.Model, SerializerMixin):
     __tablename__ = 'country'
 
     id = db.Column(db.Integer, primary_key=True)
