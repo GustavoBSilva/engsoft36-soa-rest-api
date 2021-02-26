@@ -10,7 +10,9 @@ class MyApi(Resource):
     def get(self):
         return {'message': 'My First Flask RESTful API!'}
 
+
 api.add_resource(MyApi, '/')
+
 
 def initialize_app(app):
     config_db(app)

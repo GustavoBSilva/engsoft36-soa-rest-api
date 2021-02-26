@@ -2,3 +2,4 @@ flask
 flask-restful
 flask-apispec
 flask-sqlalchemy
+SQLAlchemy-serializer
