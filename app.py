@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import Api
+from flask_cors import CORS
 
 # Flask ApiSpec
 from apispec import APISpec
@@ -14,6 +15,7 @@ from db import config_db
 
 app = Flask(__name__)
 api = Api(app)
+cors = CORS(app)
 
 app.config.update({
     'APISPEC_SPEC': APISpec(

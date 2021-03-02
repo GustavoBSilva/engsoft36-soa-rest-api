@@ -1,5 +1,6 @@
 flask
 flask-apispec
+flask-cors
 flask-restful
 flask-restx
 flask-sqlalchemy
