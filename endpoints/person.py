@@ -2,7 +2,7 @@ from flask_apispec import use_kwargs, marshal_with, doc
 from flask_apispec.views import MethodResource
 
 from flask import Response
-from flask_restful import Resource, abort, reqparse
+from flask_restful import Resource, abort
 
 from business.person import PersonDao
 
@@ -13,7 +13,7 @@ from webargs import fields
 
 class PersonItem(MethodResource, Resource):
     @doc(description='Get a person by ID.', tags=['Person'])
-    @marshal_with(PersonSchema)
+    @marshal_with(PersonSchema, code=200)
     def get(self, person_id):
         person = PersonDao.get_by_id(self, person_id)
 
@@ -33,12 +33,12 @@ class PersonItem(MethodResource, Resource):
     @doc(description='Delete a person.', tags=['Person'])
     @marshal_with(None, code=204)
     def delete(self, person_id):
-        pass
+        PersonDao.delete_person(self, person_id)
 
 
 class PersonByCpf(MethodResource, Resource):
-    @doc(description='', tags=['Person'])
-    @marshal_with(PersonSchema)
+    @doc(description='Get a person by CPF.', tags=['Person'])
+    @marshal_with(PersonResponseSchema, code=200)
     def get(self, cpf):
         person = PersonDao.get_by_cpf(self, cpf)
 
@@ -57,7 +57,8 @@ class PersonCollection(MethodResource, Resource):
         return people
 
     @doc(description='Add a new person.', tags=['Person'])
-    @use_kwargs({'name': fields.Str(required=True), 'cpf': fields.Str(required=True), 'birth_date': fields.Str(required=True)})
+    @use_kwargs({'name': fields.Str(required=True),
+                 'cpf': fields.Str(required=True), 'birth_date': fields.Str(required=True)})
     @marshal_with(PersonSchema, code=201)
     def post(self, **kwargs):
         new_person = PersonDao.add_person(self, **kwargs)

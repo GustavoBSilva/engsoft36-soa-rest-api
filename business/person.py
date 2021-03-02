@@ -32,7 +32,7 @@ class PersonDao(object):
 
         return person_to_update
 
-    def delete_person(self, _id):
-        Person.query.filter_by(id=_id).delete()
+    def delete_person(self, id):
+        Person.query.filter_by(id=id).delete()
 
         db.session.commit()

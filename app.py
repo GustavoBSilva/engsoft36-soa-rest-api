@@ -32,12 +32,12 @@ def initialize_app(app):
     config_db(app)
 
     # Adicionando recursos na API
-    api.add_resource(PersonCollection, '/person')
-    api.add_resource(PersonItem, '/person/<int:person_id>')
-    api.add_resource(PersonByCpf, '/person/cpf/<string:cpf>')
+    api.add_resource(PersonCollection, '/people')
+    api.add_resource(PersonItem, '/people/<int:person_id>')
+    api.add_resource(PersonByCpf, '/people/cpf/<string:cpf>')
 
-    api.add_resource(AddressCollection, '/address')
-    api.add_resource(AddressItem, '/address/<int:address_id>')
+    api.add_resource(AddressCollection, '/addresses')
+    api.add_resource(AddressItem, '/addresses/<int:address_id>')
 
     #  Registrando recursos para exibir no Swagger UI
     docs.register(PersonCollection)
